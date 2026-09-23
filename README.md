@@ -1,37 +1,5 @@
 # xans task manager
 
-**Project Code:** WST21-PM-2026-SF  
-**Student Name:** Christian  Vann A. Soronio
-**Course & Year:** BSIT-2 SEC 11
-**Database Used:** SQLite by default (MySQL-compatible configuration included)
-
-xans task manager is a focused personal task manager built with Laravel, Blade, and Tailwind CSS. It keeps task planning lightweight while making status and deadlines easy to scan.
-
-## Features
-
-- Add Task
-- View Tasks
-- Edit Task
-- Delete Task
-- Update Status
-- Sign up and log in securely
-- Private task lists for each account
-- Pending, completed, and overdue summary counts
-- Responsive dashboard for mobile and desktop
-- Server-side validation and CSRF protection
-
-## Requirements
-
-- PHP 8.2+
-- Composer
-- SQLite with the PDO SQLite extension, or MySQL 8+
-
-## Setup
-
-```bash
-composer install
-# xans task manager
-
 Personal task manager built with Laravel, Blade, and Tailwind CSS.
 
 ## Project Information
