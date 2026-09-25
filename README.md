@@ -14,8 +14,7 @@ Personal task manager built with Laravel, Blade, and Tailwind CSS.
 - Add, view, edit, and delete tasks
 - Mark tasks as pending or completed
 - Show overdue tasks
-- User registration and login
-- Private task lists for each account
+- Shared task workspace without login
 - Responsive purple dashboard
 - Server-side validation and CSRF protection
 
@@ -53,8 +52,6 @@ DB_PASSWORD=
 ## Main Laravel Files
 
 - `routes/web.php` contains the application routes.
-- `app/Http/Controllers/AuthController.php` handles registration and login.
 - `app/Http/Controllers/TaskController.php` handles task operations.
-- `app/Models/User.php` and `app/Models/Task.php` define the data models.
-- `resources/views/auth` contains the login and registration pages.
+- `app/Models/Task.php` defines the task model.
 - `resources/views/tasks` contains the task dashboard and edit page.

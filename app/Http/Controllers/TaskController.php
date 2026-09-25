@@ -12,7 +12,6 @@ class TaskController extends Controller
     public function index(): View
     {
         $tasks = Task::query()
-            ->where('user_id', session('user_id'))
             ->orderByRaw("CASE WHEN status = 'Pending' THEN 0 ELSE 1 END")
             ->orderBy('due_date')
             ->latest()
@@ -30,21 +29,18 @@ class TaskController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        Task::create(array_merge($this->validatedData($request), ['user_id' => session('user_id')]));
+        Task::create($this->validatedData($request));
 
         return to_route('tasks.index')->with('success', 'Task added to your list.');
     }
 
     public function edit(Task $task): View
     {
-        $this->ensureOwnership($task);
-
         return view('tasks.edit', compact('task'));
     }
 
     public function update(Request $request, Task $task): RedirectResponse
     {
-        $this->ensureOwnership($task);
         $task->update($this->validatedData($request));
 
         return to_route('tasks.index')->with('success', 'Task updated successfully.');
@@ -52,7 +48,6 @@ class TaskController extends Controller
 
     public function destroy(Task $task): RedirectResponse
     {
-        $this->ensureOwnership($task);
         $task->delete();
 
         return to_route('tasks.index')->with('success', 'Task removed.');
@@ -60,7 +55,6 @@ class TaskController extends Controller
 
     public function toggle(Task $task): RedirectResponse
     {
-        $this->ensureOwnership($task);
         $task->update([
             'status' => $task->status === 'Completed' ? 'Pending' : 'Completed',
         ]);
@@ -80,8 +74,4 @@ class TaskController extends Controller
         ]);
     }
 
-    private function ensureOwnership(Task $task): void
-    {
-        abort_unless($task->user_id === session('user_id'), 404);
-    }
 }
